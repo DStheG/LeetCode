@@ -68,10 +68,10 @@ class Solution:
         idx = []
         for i, c in enumerate(S):
             if (isAlphabet(c)):
-                buf.append(c)
+                buf.insert(0, c)
                 idx.append(i)
         for i, c in zip(idx, buf):
-            S[-i-1] = c
+            S[i] = c
         return ''.join(S)
 
 
