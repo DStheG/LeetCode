@@ -1,5 +1,7 @@
+from collections import deque
+
 class Solution:
-    def minKBitFlips(self, nums: list[int], k: int) -> int:
+    def minKBitFlips1(self, nums: list[int], k: int) -> int:
         def flip(nums, idx, k):
             for i in range(idx, idx+k+1):
                 if (i >= len(nums)):
@@ -17,5 +19,15 @@ class Solution:
                 nums = flip(nums, i, k)
         return ret
 
+    def minKBitFlips(self, nums: list[int], k: int) -> int:
+        q = deque()
+        for i,n in enumerate(nums):
+            if (n == 0):
+                q.append(i)
+        while(len(q)):
+            n = q.pop()
+            while(q[0] < n+k):
+                q.pop()
+        return -1
 s = Solution()
 print(s.minKBitFlips([0,1,0], 1))
